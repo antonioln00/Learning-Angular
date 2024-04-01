@@ -242,3 +242,113 @@ if (square !== undefined) {
 const area = square?.area();
 
 // const width = square?.area()?.width;
+
+const mySquare = square ? square : new Square(); // operador ternario se square for true (?) mostra square, se não (:) cria uma nova instancia de Square();
+
+const mySquare2 = square ?? new Square(); // se square não for nulo, aparecesse square, se não, cria uma nova instancia de square;
+
+class Car {
+  private distanceRun: number = 0;
+  private color: string;
+
+  constructor(private isHybrid: boolean, color: string = "red") {
+    this.color = color; // construtor é inicializado junto com a instancia da classe
+  }
+
+  getGasConsumption(): string {
+    return this.isHybrid ? "Very low" : "Too high!"; // são metodos da classe car
+  }
+
+  drive(distance: number): void {
+    this.distanceRun += distance;
+  }
+
+  static honk(): string {
+    return "HOOONK!"; // esse é um metodo static onde não precisa instancializar um objeto primeiro.
+  }
+
+  get distance(): number {
+    return this.distanceRun; // a propriedade get torna o metodo legivel
+  }
+}
+
+class Car2 {
+  make: string;
+  model: string;
+
+  constructor(make: string, model: string) {
+    this.make = make;
+    this.model = model;
+  }
+}
+
+class Car3 {
+  constructor(public make: string, public model: string) {}
+}
+
+interface Vehicle {
+  make: string;
+}
+
+class Car4 implements Vehicle {
+  make: string; // por eu estar implementando a interface vehicle na classe car4, se torna obrigatório a propriedade make.
+}
+
+interface Exception {
+  message: string;
+  id?: number; // o ? representa que o ID não é obrigatório
+}
+
+interface ErrorHandler {
+  exceptions: Exception[];
+  logException(message: string, id?: number): void;
+}
+
+interface ExceptionHandlerSettings {
+  logAllExceptions: boolean;
+}
+
+class CustomErrorHandler implements ErrorHandler {
+  exceptions: Exception[] = [];
+  logAllExceptions: boolean;
+
+  constructor(settings: ExceptionHandlerSettings) {
+    this.logAllExceptions = settings.logAllExceptions;
+  }
+
+  logException(message: string, id?: number): void {
+    this.exceptions.push({ message, id });
+  }
+}
+
+interface A {
+  a: number;
+ }
+ const instance = { a: 3 } as A;
+ instance.a = 5;
+
+ interface DatabaseService {
+  save(order: Order): void
+ }
+ class Order {}
+ class OrderProcessor {
+  
+  constructor(private databaseService: DatabaseService) {}
+  
+  process(order) {
+  this.databaseService.save(order);
+  }
+ }
+
+
+ interface AuthService {
+  isAuthenticated(): boolean;
+ }
+ class Auth {
+  constructor(private srv: AuthService) {}
+  execute() {
+  if (this.srv.isAuthenticated()) {}
+  else {}
+  }
+ }
+ 
