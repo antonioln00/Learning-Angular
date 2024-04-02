@@ -323,32 +323,79 @@ class CustomErrorHandler implements ErrorHandler {
 
 interface A {
   a: number;
- }
- const instance = { a: 3 } as A;
- instance.a = 5;
+}
+const instance = { a: 3 } as A;
+instance.a = 5;
 
- interface DatabaseService {
-  save(order: Order): void
- }
- class Order {}
- class OrderProcessor {
-  
+interface DatabaseService {
+  save(order: Order): void;
+}
+class Order {}
+class OrderProcessor {
   constructor(private databaseService: DatabaseService) {}
-  
+
   process(order) {
-  this.databaseService.save(order);
+    this.databaseService.save(order);
   }
- }
+}
 
-
- interface AuthService {
+interface AuthService {
   isAuthenticated(): boolean;
- }
- class Auth {
+}
+class Auth {
   constructor(private srv: AuthService) {}
   execute() {
-  if (this.srv.isAuthenticated()) {}
-  else {}
+    if (this.srv.isAuthenticated()) {
+    } else {
+    }
   }
+}
+
+function NameChanger(callbackObject: any): Function {
+  return function (target: Object, key: string): void {
+    let propertyValue: string = target[key];
+    if (delete target[key]) {
+      Object.defineProperty(target, key, {
+        get: function () {
+          return propertyValue;
+        },
+        set: function (newValue) {
+          propertyValue = newValue;
+          callbackObject.changeName.call(this, propertyValue);
+        },
+      });
+    }
+  };
+}
+
+class Character {
+  @NameChanger({
+    changeName: function (newValue: string): void {
+      console.log("You are now known as ${newValue}");
+    },
+  })
+  name: string;
+}
+var character = new Character();
+character.name = "Anakin";
+console.log(character);
+
+interface Hero {
+  name: string;
+  power: number;
+ }
+ const hero: Partial<Hero> = {
+  name: 'Boothstomper'
+ }
+ 
+ console.log(hero);
+
+ interface Hero2 {
+  powers: Record<string, number>
+ }
+
+ interface Hero3 {
+  name: string;
+  powers: number[] | Record<string, number>; // tipo union 
  }
  
