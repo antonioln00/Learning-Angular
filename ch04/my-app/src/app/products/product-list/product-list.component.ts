@@ -7,7 +7,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 })
 export class ProductListComponent {
 
-  selectedProduct = '';
+  selectedProduct = 'Microphone';
 
   onBuy(name: string) {
     window.alert(`You just bought ${name}!`);
