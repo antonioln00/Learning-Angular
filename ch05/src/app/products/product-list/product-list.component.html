@@ -1,0 +1,15 @@
+<h2>Product List</h2>
+<ul>
+  <li (click)="selectedProduct = 'Webcam'">Webcam</li>
+  <li (click)="selectedProduct = 'Microphone'">Microphone</li>
+  <li (click)="selectedProduct = 'Wireless Keyboard'">Wireless Keyboard</li>
+</ul>
+
+<app-product-detail
+ *ngIf="selectedProduct; else noProduct"
+ [name]="selectedProduct"
+ (bought)="onBuy(selectedProduct)">
+</app-product-detail>
+<ng-template #noProduct>
+ <p>No product selected!</p>
+</ng-template>
