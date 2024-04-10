@@ -1,6 +1,16 @@
-<div *ngIf="name">
+<div *ngIf="product">
   <h2>Product Details</h2>
-  <h3>{{name}}</h3>
+  <h3>{{product.name}}</h3>
+  <div [ngSwitch]="product.name">
+    <p>{{product | json}}</p>
+    <p *ngSwitchCase="'Microphone'">
+    Product is used for audio
+
+    </p>
+    <p *ngSwitchDefault>Product is for general use</p>
+    <span>{{product.price | currency:'EUR'}}</span>
+    <p>{{today | date:'fullDate'}}</p>
+    </div>
   <button (click)="buy()">Buy Now</button>
 </div>
 <span>{{productName}}</span>
