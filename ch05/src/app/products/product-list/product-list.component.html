@@ -1,14 +1,16 @@
 <h2>Product List</h2>
 <ul>
-  <li *ngFor="let product of products" (click)="selectedProduct =
+  <li *ngFor="let product of products | sort" (click)="selectedProduct =
   product" (click)="selectedProduct =
   product">
     {{product.name | uppercase}}
   </li>
 </ul>
 
+
+
 <app-product-detail *ngIf="selectedProduct; else noProduct" [product]="selectedProduct" (bought)="onBuy(selectedProduct.name)">
 </app-product-detail>
 <ng-template #noProduct>
-  <p>No product selected!</p>
+  <p appcopyright>No product selected!</p>
 </ng-template>
