@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CopyrightDirective } from './copyright.directive';
 import { NumericDirective } from './numeric.directive';
+import { AutofocusDirective } from './products/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NumericDirective } from './numeric.directive';
   ],
   imports: [
     BrowserModule,
-    ProductsModule
+    ProductsModule,
+    AutofocusDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

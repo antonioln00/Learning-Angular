@@ -3,14 +3,15 @@
   <li *ngFor="let product of products | sort" (click)="selectedProduct =
   product" (click)="selectedProduct =
   product">
-    {{product.name | uppercase}}
+    {{product.name}}
   </li>
 </ul>
 
-
-
-<app-product-detail *ngIf="selectedProduct; else noProduct" [product]="selectedProduct" (bought)="onBuy(selectedProduct.name)">
+<app-product-detail *ngIf="selectedProduct; else noProduct" [product]="selectedProduct" (bought)="onBuy()">
 </app-product-detail>
 <ng-template #noProduct>
   <p appcopyright>No product selected!</p>
 </ng-template>
+
+<h3>Offers</h3>
+<ng-template appProductHost></ng-template>

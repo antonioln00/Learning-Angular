@@ -8,11 +8,11 @@ import { Product } from '../product';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements AfterViewInit {
+  selectedProduct: Product | undefined;
   @ViewChild(ProductDetailComponent) productDetail:
     | ProductDetailComponent
     | undefined;
 
-  selectedProduct: Product | undefined;
   products = [
     {
       name: 'Webcam',
@@ -34,11 +34,7 @@ export class ProductListComponent implements AfterViewInit {
     }
   }
 
-  onBuy(name: string) {
+  onBuy() {
     window.alert(`You just bought ${this.selectedProduct?.name}!`);
-  }
-
-  trackByProducts(index: number, name: string): string {
-    return name;
   }
 }
