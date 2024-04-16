@@ -7,14 +7,10 @@ import { ProductsService } from '../products.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent {
 
   products: Product[] = [];
 
   constructor(private productService: ProductsService) { }
-
-  ngOnInit(): void {
-    this.products = this.productService.getProducts();
-  }
 
 }
