@@ -1,20 +1,31 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { from } from 'rxjs'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'ch07';
+  title = '';
 
   constructor() {
-    this.onComplete().then(this.setTitle);
+    const complete$ = from(this.onComplete());
+    complete$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
-    this.title = 'Learning Angular';
+    const timestamp = new Date().getMilliseconds();
+    this.title = `Learning Angular (${timestamp})`;
+    console.log(this.title);
   };
+
+  title$ = new Observable((observer) => {
+    setInterval(() => {
+      observer.next();
+    }, 2000);
+  });
 
   private changeTitle(callback: Function) {
     setTimeout(() => {
@@ -23,11 +34,10 @@ export class AppComponent {
   }
 
   private onComplete() {
-    return new Promise<void>(resolve => {
-    setTimeout(() => {
-    resolve();
-    }, 2000);
+    return new Promise<void>((resolve) => {
+      setInterval(() => {
+        resolve();
+      }, 2000);
     });
-   };
-
+  }
 }
