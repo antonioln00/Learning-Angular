@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { Product } from '../product';
@@ -8,13 +14,15 @@ import { ProductsService } from '../products.service';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductsService]
+  providers: [ProductsService],
 })
 export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
-
   selectedProduct: Product | undefined;
-  @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
+  @ViewChild(ProductDetailComponent) productDetail:
+    | ProductDetailComponent
+    | undefined;
   products$: Observable<Product[]> | undefined;
+  products: Product[] = [];
   private productsSub: Subscription | undefined;
 
   constructor(private productService: ProductsService) {}
@@ -38,7 +46,19 @@ export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   private getProducts() {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe((products) => {
+      this.products = products;
+    });
   }
 
+  onAdd(product: Product) {
+    this.products.push(product);
+  }
+
+  onDelete() {
+    this.products = this.products.filter(
+      (product) => product !== this.selectedProduct
+    );
+    this.selectedProduct = undefined;
+  }
 }
