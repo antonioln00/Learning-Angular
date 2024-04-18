@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
 import { ProductsModule } from './products/products.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    KeyLoggerComponent
+  declarations: [AppComponent, KeyLoggerComponent],
+  imports: [BrowserModule, ProductsModule, HttpClientModule, AuthModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
-  imports: [
-    BrowserModule,
-    ProductsModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

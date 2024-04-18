@@ -5,8 +5,9 @@
   <input placeholder="New price" #price />
   <button (click)="changePrice(product, price.
 valueAsNumber)">Change</button>
-  <button class="delete" (click)="remove(product)">Delete</button>
   <p>
-    <button (click)="buy()">Buy Now</button>
+    <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
   </p>
+
+  <button class="delete" (click)="remove(product)">Delete</button>
 </div>
