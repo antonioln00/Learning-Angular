@@ -1,13 +1,1 @@
-input {
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #BDBDBD;
- }
- label {
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  display: block;
- }
+/* You can add global styles to this file, and also import other style files */
