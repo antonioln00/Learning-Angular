@@ -17,7 +17,7 @@ a:hover {
   -moz-osx-font-smoothing: grayscale;
 }
 
-div  {
+div {
   padding: 0 16px;
 }
 
@@ -29,7 +29,8 @@ h2 {
   font-size: 20px;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: lighter;
 }
 
@@ -41,7 +42,8 @@ li {
   cursor: pointer;
 }
 
-.button, button {
+.button,
+button {
   padding: 8px 16px;
   border-radius: 2px;
   font-size: 14px;
@@ -49,7 +51,8 @@ li {
   border: none;
 }
 
-.button:hover, button:hover {
+.button:hover,
+button:hover {
   opacity: 0.8;
   font-weight: normal;
 }
@@ -71,4 +74,16 @@ label {
 
 .active {
   color: black;
+}
+
+input.ng-touched {
+  border: 3px solid lightblue;
+ }
+
+input.ng-dirty.ng-valid {
+  border: 2px solid green;
+}
+
+input.ng-dirty.ng-invalid {
+  border: 2px solid red;
 }

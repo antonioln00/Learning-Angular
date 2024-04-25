@@ -1,13 +1,29 @@
 <form [formGroup]="productForm" (ngSubmit)="createProduct()">
   <div>
-  <label for="name">Name</label>
-  <input id="name" formControlName="name" />
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" required />
   </div>
   <div>
-  <label for="price">Price</label>
-  <input id="price" formControlName="price" />
+    <label for="price">Price</label>
+    <input id="price" formControlName="price" required />
   </div>
   <div>
-  <button type="submit">Create</button>
+    <button type="submit">Create</button>
   </div>
- </form>
+</form>
+
+<form formGroupName="info">
+  <h2>Product information</h2>
+  <div>
+    <label for="category">Category</label>
+    <input id="category" formControlName="category" />
+  </div>
+  <div>
+    <label for="descr">Description</label>
+    <input id="descr" formControlName="description" />
+  </div>
+  <div>
+    <label for="photo">Photo URL</label>
+    <input id="photo" formControlName="image" />
+  </div>
+</form>
