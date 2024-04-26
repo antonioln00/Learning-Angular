@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { priceRangeValidator } from '../pricerange.directve';
 
 
 @Component({
@@ -9,27 +10,37 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   templateUrl: './product-create.component.html',
   styleUrls: ['./product-create.component.css']
 })
-export class ProductCreateComponent {
+export class ProductCreateComponent implements OnInit {
 
-  productForm: FormGroup<{
-    name: FormControl<string>,
-    price: FormControl<number | undefined>
-  }> | undefined;
+  showPriceRangeHint = false;
 
-  private buildForm() {
-    this.productForm = this.builder.nonNullable.group({
-      name: this.builder.nonNullable.control(''),
-      price: this.builder.nonNullable.control<number |
-        undefined>(undefined, {})
-    });
+  ngOnInit(): void {
+    this.price.valueChanges.subscribe(price => {
+      if (price) {
+        this.showPriceRangeHint = price > 1 && price < 10000;
+      }
+    })
   }
+
+  productForm = new FormGroup({
+    name: new FormControl('',
+      {
+        nonNullable: true,
+        validators: Validators.required
+      }),
+    price: new FormControl<number | undefined>(undefined, {
+      nonNullable: true,
+      validators: [Validators.required, priceRangeValidator()]
+    })
+  });
+
 
   get name() { return this.productForm.controls.name }
   get price() { return this.productForm.controls.price }
 
   @Output() added = new EventEmitter<Product>();
 
-  constructor(private productsService: ProductsService, private builder: FormBuilder) { }
+  constructor(private productsService: ProductsService) { }
 
   createProduct() {
     this.productsService.addProduct(this.name.value, Number(this.

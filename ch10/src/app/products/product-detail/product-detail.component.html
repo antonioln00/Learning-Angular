@@ -8,7 +8,7 @@ price" />
 
     <button type="submit">Change</button>
 
-    <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
+    <button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
 
   </form>
   <p>
