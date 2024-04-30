@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { priceRangeValidator } from '../pricerange.directve';
+import { map, Observable } from 'rxjs';
 
 
 @Component({
@@ -13,13 +14,21 @@ import { priceRangeValidator } from '../pricerange.directve';
 export class ProductCreateComponent implements OnInit {
 
   showPriceRangeHint = false;
+  products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
 
   ngOnInit(): void {
     this.price.valueChanges.subscribe(price => {
       if (price) {
         this.showPriceRangeHint = price > 1 && price < 10000;
       }
-    })
+    });
+    this.productsService.getProducts().subscribe(products => {
+      this.products = products;
+    });
+    this.products$ = this.name.valueChanges.pipe(
+      map(name => this.products.filter(product => product.name.startsWith(name)))
+    );
   }
 
   productForm = new FormGroup({
