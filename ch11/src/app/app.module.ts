@@ -1,29 +1,32 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-// angular material
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon'
-import { MatButtonToggleModule } from '@angular/material/button-toggle'
+import { CartComponent } from './cart/cart.component';
+import { ProductsModule } from './products/products.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthModule } from './auth/auth.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CartComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    ProductsModule,
     AppRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatButtonToggleModule
+    HttpClientModule,
+    AuthModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
