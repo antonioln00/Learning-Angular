@@ -11,7 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +27,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ProductDetailComponent,
     SortPipe,
     ProductViewComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    PriceComponent
   ],
   imports: [
     CommonModule,
@@ -29,9 +38,17 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatToolbarModule,
+    MatListModule,
+    MatGridListModule,
+    MatDialogModule
   ],
-  exports: [ProductListComponent]
+  exports: [ProductListComponent, MatToolbarModule]
 })
 
 export class ProductsModule { }

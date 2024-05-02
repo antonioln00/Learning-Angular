@@ -16,6 +16,7 @@ export class ProductCreateComponent implements OnInit {
   showPriceRangeHint = false;
   products: Product[] = [];
   products$: Observable<Product[]> | undefined;
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
 
   ngOnInit(): void {
     this.price.valueChanges.subscribe(price => {

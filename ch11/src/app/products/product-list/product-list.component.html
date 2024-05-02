@@ -1,6 +1,7 @@
 <ul>
   <li *ngFor="let product of products | sort">
     <a [routerLink]="['/products', product.id]">{{product.name}}</a>
+    <mat-checkbox color="primary" [checked]="isChecked">Check me</mat-checkbox>
   </li>
 </ul>
 <app-product-create (added)="onAdd($event)"></app-product-create>

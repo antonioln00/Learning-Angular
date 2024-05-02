@@ -11,8 +11,9 @@ export class ProductListComponent implements OnInit {
 
   selectedProduct: Product | undefined;
   products: Product[] = [];
+  isChecked: boolean = false;
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.getProducts();
