@@ -45,7 +45,9 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   }
 
   changePrice(product: Product) {
-    this.dialog.open(PriceComponent).afterClosed().pipe(
+    this.dialog.open(PriceComponent, {
+      data: product.price
+    }).afterClosed().pipe(
       filter(price => !!price),
       switchMap(price => this.productService.updateProduct(product.id,
         price))
